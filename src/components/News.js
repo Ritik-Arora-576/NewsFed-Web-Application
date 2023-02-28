@@ -3,7 +3,7 @@ import NewsItem from "./NewsItem";
 import Spinner from "./Spinner";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-export default function News() {
+export default function News(props) {
   const [articles, setArticles] = useState(Array.from({ length: 0 }));
 
   const fetchData = () => {
@@ -29,7 +29,7 @@ export default function News() {
       >
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {articles.map((element, index) => {
-            return (<NewsItem key={index}/>);
+            return (<NewsItem key={index} dark={props.dark}/>);
           })}
         </div>
       </InfiniteScroll>

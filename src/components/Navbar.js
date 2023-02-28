@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 export default function Navbar(props) {
   return (
     <div className="container-fluid">
-      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <nav className={`navbar navbar-expand-lg bg-${props.dark} navbar-${props.dark} fixed-top`}>
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             NewsFed
@@ -32,7 +32,7 @@ export default function Navbar(props) {
                 >
                   Category
                 </Link>
-                <ul className="dropdown-menu">
+                <ul className={`dropdown-menu dropdown-menu-${props.dark}`}>
                   {Object.keys(props.categories).map((category) =>{
                     return (
                       <li key={category}>
@@ -55,7 +55,7 @@ export default function Navbar(props) {
                 >
                   Country
                 </Link>
-                <ul className="dropdown-menu">
+                <ul className={`dropdown-menu dropdown-menu-${props.dark}`}>
                   {Object.keys(props.countries).map((country) =>{
                       return (
                         <li key={country}>
@@ -74,6 +74,7 @@ export default function Navbar(props) {
                 type="checkbox"
                 role="switch"
                 id="flexSwitchCheckDefault"
+                onClick={props.setMode}
               />
               <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
                 Dark Mode
