@@ -36,7 +36,7 @@ export default function Navbar(props) {
                   {Object.keys(props.categories).map((category) =>{
                     return (
                       <li key={category}>
-                        <Link className="dropdown-item" to={`/${props.categories[category]}`}>
+                        <Link className="dropdown-item" to={`/${category}`}>
                           {category}
                         </Link>
                       </li>
@@ -59,7 +59,7 @@ export default function Navbar(props) {
                   {Object.keys(props.countries).map((country) =>{
                       return (
                         <li key={country}>
-                          <Link className="dropdown-item" to={`/${props.countries[country]}`}>
+                          <Link className="dropdown-item" to={`/${country}`}>
                             {country}
                           </Link>
                         </li>

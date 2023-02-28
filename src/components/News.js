@@ -5,15 +5,33 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function News(props) {
   const [articles, setArticles] = useState(Array.from({ length: 0 }));
+  const [page, setPage] = useState(1);
+  const [totalResults, setTotalResults] = useState(0);
 
-  const fetchData = () => {
-    setTimeout(() => {
-      setArticles(articles.concat(Array.from({ length: 9 })));
-    }, 1500);
+  const fetchData = async() => {
+    const url = `https://newsapi.org/v2/top-headlines?apiKey=${props.apiKey}&category=${props.category}&country=${props.country}&page=${page}&pageSize=${props.pageSize}`;
+    const loadData = async() =>{
+      let data = await fetch(url);
+      let parseData = await data.json();
+      setArticles(articles.concat(parseData.articles));
+      setPage(page+1);
+    }
+
+    loadData();
   };
 
   useEffect(() => {
-    setArticles(Array.from({ length: 9 }));
+    const loadData = async() =>{
+      const url = `https://newsapi.org/v2/top-headlines?apiKey=${props.apiKey}&category=${props.category}&country=${props.country}&page=${page}&pageSize=${props.pageSize}`;
+      let data = await fetch(url);
+      let parseData = await data.json();
+      setArticles(parseData.articles);
+      setPage(page+1);
+      setTotalResults(parseData.totalResults);
+      console.log(parseData.artcles);
+    }
+
+    loadData();
   },[]);
 
   return (
@@ -23,16 +41,28 @@ export default function News(props) {
       <InfiniteScroll
         dataLength={articles.length}
         next={fetchData}
-        hasMore={true}
+        hasMore={articles.length!==totalResults}
         loader={<Spinner />}
         style={{overflow:"hidden"}}
       >
         <div className="row row-cols-1 row-cols-md-3 g-4">
-          {articles.map((element, index) => {
-            return (<NewsItem key={index} dark={props.dark}/>);
+          {articles.map((ele, index) => {
+            return (<NewsItem 
+              key={index} 
+              dark={props.dark} 
+              title={ele.title}
+              description={ele.description}
+              imgUrl={ele.urlToImage}
+              newsUrl={ele.url}/>);
           })}
         </div>
       </InfiniteScroll>
     </div>
   );
+}
+
+News.defaultProps = {
+  pageSize: 9,
+  country: "in",
+  category: "general"
 }

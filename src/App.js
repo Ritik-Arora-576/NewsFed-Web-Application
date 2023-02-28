@@ -43,6 +43,8 @@ function App() {
     }
   }
 
+  const apiKey = process.env.REACT_APP_API_KEY;
+
   return (
     <div>
       <Router>
@@ -51,15 +53,15 @@ function App() {
           <Route
             exact
             path="/"
-            element={<News key={null} category={null} country={null} dark={dark} />}
+            element={<News key={null} dark={dark} apiKey={apiKey}/>}
           />
           {Object.keys(categories).map((category) => {
             return (
               <Route
                 exact
-                path={`/${categories[category]}`}
+                path={`/${category}`}
                 element={
-                  <News key={category} category={category} country={null} dark={dark} />
+                  <News key={category} category={categories[category]} dark={dark}  apiKey={apiKey}/>
                 }
               />
             );
@@ -68,9 +70,9 @@ function App() {
             return (
               <Route
                 exact
-                path={`/${countries[country]}`}
+                path={`/${country}`}
                 element={
-                  <News key={country} category={null} country={country} dark={dark} />
+                  <News key={country} country={countries[country]} dark={dark}  apiKey={apiKey}/>
                 }
               />
             );
