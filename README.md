@@ -2,7 +2,7 @@
 <div align="center">
   <img src="https://cdn.dribbble.com/users/975543/screenshots/4623054/1_d.png" align="center" width=250px height=200px>
 </div>
-
+<br>
 <ul>
   <li>React based Single Page Web Application which displays the top headlines around the globe by fetching the data from News API
 service.</li>
