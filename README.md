@@ -20,6 +20,9 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
+### API Service
+Documentation Link: [News API](https://newsapi.org/docs)
+
 ## Contact
 
 Ritik Arora - [Linkedin](https://www.linkedin.com/in/ritik-arora-49b312197/) - ritikarora656@gmail.com
