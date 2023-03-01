@@ -1,4 +1,5 @@
-# Getting Started with Create React App
+<h1 align="center">NewsFed Web Application</h1>
+<img src="https://cdn.dribbble.com/users/975543/screenshots/4623054/1_d.png" align="center">
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
