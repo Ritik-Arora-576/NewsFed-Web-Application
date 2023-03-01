@@ -22,13 +22,16 @@ export default function News(props) {
 
   useEffect(() => {
     const loadData = async() =>{
+      props.setProgress(17);
       const url = `https://newsapi.org/v2/top-headlines?apiKey=${props.apiKey}&category=${props.category}&country=${props.country}&page=${page}&pageSize=${props.pageSize}`;
       let data = await fetch(url);
+      props.setProgress(45);
       let parseData = await data.json();
+      props.setProgress(78);
       setArticles(parseData.articles);
       setPage(page+1);
       setTotalResults(parseData.totalResults);
-      console.log(parseData.artcles);
+      props.setProgress(100);
     }
 
     loadData();
@@ -53,7 +56,9 @@ export default function News(props) {
               title={ele.title}
               description={ele.description}
               imgUrl={ele.urlToImage}
-              newsUrl={ele.url}/>);
+              newsUrl={ele.url}
+              author={ele.author}
+              publishedAt={ele.publishedAt}/>);
           })}
         </div>
       </InfiniteScroll>

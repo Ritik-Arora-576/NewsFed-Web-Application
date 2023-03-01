@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import News from "./components/News";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import LoadingBar from 'react-top-loading-bar'
 
 function App() {
   let categories = {
@@ -45,15 +46,21 @@ function App() {
 
   const apiKey = process.env.REACT_APP_API_KEY;
 
+  const [progress, setProgress] = useState(0);
+
   return (
     <div>
       <Router>
         <Navbar categories={categories} countries={countries} dark={dark} setMode={setMode}/>
+        <LoadingBar
+          color='#f11946'
+          progress={progress}
+        />
         <Routes>
           <Route
             exact
             path="/"
-            element={<News key={null} dark={dark} apiKey={apiKey}/>}
+            element={<News key={null} dark={dark} apiKey={apiKey} setProgress={setProgress}/>}
           />
           {Object.keys(categories).map((category) => {
             return (
@@ -61,7 +68,7 @@ function App() {
                 exact
                 path={`/${category}`}
                 element={
-                  <News key={category} category={categories[category]} dark={dark}  apiKey={apiKey}/>
+                  <News key={category} category={categories[category]} dark={dark}  apiKey={apiKey} setProgress={setProgress}/>
                 }
               />
             );
@@ -72,7 +79,7 @@ function App() {
                 exact
                 path={`/${country}`}
                 element={
-                  <News key={country} country={countries[country]} dark={dark}  apiKey={apiKey}/>
+                  <News key={country} country={countries[country]} dark={dark}  apiKey={apiKey} setProgress={setProgress}/>
                 }
               />
             );

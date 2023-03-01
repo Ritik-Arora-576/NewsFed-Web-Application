@@ -75,8 +75,9 @@ export default function Navbar(props) {
                 role="switch"
                 id="flexSwitchCheckDefault"
                 onClick={props.setMode}
+                style={{cursor:"pointer"}}
               />
-              <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+              <label className="form-check-label" htmlFor="flexSwitchCheckDefault" style={{cursor:"pointer"}}>
                 Dark Mode
               </label>
             </div>
